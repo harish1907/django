@@ -465,7 +465,7 @@
 
     const websocketConnection = () => {
       const currentFilter = window.location.href?.split("?")?.[1]?.split("=")?.[1] ? window.location.href.split("?")?.[1]?.split("=")?.[1] : "15m"; 
-      const socket = new WebSocket(`ws://${window.location.host}/arpit-lodu/`);
+      const socket = new WebSocket(`wss://${window.location.host}/arpit-lodu/`);
         socket.onopen = function() {
             console.log('WebSocket connection established.');
         };
