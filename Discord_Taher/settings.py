@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     'channels',
    
 ]
+
+X_FRAME_OPTIONS = 'ALLOWALL'
+
+
 # LOGIN_URL = 'login'  # This should be the URL name of your login page.
 # LOGIN_REDIRECT_URL = 'dashboard_view'  # Redirect users to the dashboard after login.
 
@@ -64,6 +68,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = "Discord_Taher.urls"

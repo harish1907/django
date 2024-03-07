@@ -268,9 +268,14 @@
           <img style="width:60%;" src="{% static 'bot_image/img/logo.png' %}" alt="BEHD Image"> 
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active screener"></li>
@@ -307,14 +312,38 @@
               </div>
               </div>
             </div>
+
             
-            <div class="container-div" style="width:100%;"> 
-              <!-- Filter form -->
-              <div class="duration d-flex justify-content-between align-items-center">
-                <div class="form-div d-flex">
-                    <input id="breackerinputId" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                    <button style="width:75px;" id="breackerclearbtnID" type="button" class="btn btn-outline-warning my-2 my-sm-0">Clear</button>
+            <div class="row">
+              <div class="col col-lg-3">
+                <form class="form-inline">
+                  <input id="breackerinputId" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                  <button style="width:75px; margin-left:7px;" id="breackerclearbtnID" type="button" class="btn btn-outline-warning my-2 my-sm-0">Clear</button>
+                </form>
               </div>
+              <div class="col-sm">
+                <p style="color:#fff; font-size:15px; display: flex; justify-content: center;">Breakout/Breakdown is confirmed after two consecutive close of a candle</p>
+              </div>
+              <div class="col-sm" style="display: flex; justify-content: end; gap: 5px;">
+                <a href="?interval=15m" class="btn btn-primary active">15 min</a>
+                <a href="?interval=1h" class="btn btn-primary">1 hour</a>
+                <a href="?interval=4h" class="btn btn-primary">4 hours</a>
+                <a href="?interval=1d" class="btn btn-primary">1 day</a>
+                <a href="?interval=1w" class="btn btn-primary">1 week</a>
+            </div>
+            
+            </div>
+            
+           
+            
+            {% comment %} <div class="container-div" style="width:100%;"> 
+              <!-- Filter form -->
+              <div class="form-div d-flex">
+                  <input id="breackerinputId" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                  <button style="width:75px; margin-left:7px;" id="breackerclearbtnID" type="button" class="btn btn-outline-warning my-2 my-sm-0">Clear</button>
+            </div>
+              <div class="duration d-flex justify-content-between align-items-center">
+              
               <div class="duration-buttons d-none d-md-block">
                 <a href="?interval=15m" class="btn btn-primary active">15 min</a>
                 <a href="?interval=1h" class="btn btn-primary">1 hour</a>
@@ -322,7 +351,7 @@
                 <a href="?interval=1d" class="btn btn-primary">1 day</a>
                 <a href="?interval=1w" class="btn btn-primary">1 week</a>
             </div>
-            </div>
+            </div> {% endcomment %}
           </div>
         </div>
       </div>
@@ -436,7 +465,7 @@
 
     const websocketConnection = () => {
       const currentFilter = window.location.href?.split("?")?.[1]?.split("=")?.[1] ? window.location.href.split("?")?.[1]?.split("=")?.[1] : "15m"; 
-      const socket = new WebSocket(`wss://${window.location.host}/arpit-lodu/`);
+      const socket = new WebSocket(`ws://${window.location.host}/arpit-lodu/`);
         socket.onopen = function() {
             console.log('WebSocket connection established.');
         };
@@ -483,7 +512,8 @@
                     `<img style="width: 50px; height: auto;" src="{% static 'bot_image/img/BURD.png' %}" alt="BURD Image">` :
                 item.notification}
               </td>
-              <td data-label='Levels'>${item.level ? item.level : "-"}${item.is_support === "True" ? ' Support' : ' Resistance'}</td>
+              <td data-label='Levels' style='color: ${item.is_support === "True" ? "green" : "red"}'>${item.level ? item.level : "-"}${item.is_support === "True" ? ' Support' : ' Resistance'}</td>
+
               
               `;
               tableBody.appendChild(row);
