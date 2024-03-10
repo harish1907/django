@@ -63,6 +63,22 @@ class BrakerScreenerConsumerNew(AsyncWebsocketConsumer):
 
     async def send_braker_notification(self, event):
         await self.send(text_data=json.dumps(event))
-        
+    async def send_braker_notification_1h(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_braker_notification_4h(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_braker_notification_1d(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_braker_notification_1w(self, event):
+        await self.send(text_data=json.dumps(event))
+
     async def send_divergence_notification(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_divergence_notification_1h(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_divergence_notification_4h(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_divergence_notification_1d(self, event):
+        await self.send(text_data=json.dumps(event))
+    async def send_divergence_notification_1w(self, event):
         await self.send(text_data=json.dumps(event))
