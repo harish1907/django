@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
  <!-- <html lang="en" > -->
-  <html lang="en" oncontextmenu="return false">
+  <html lang="en" oncontextmenu="return false"> 
   <head>
     <title>Currency Exchange</title>
     <!-- <link rel="stylesheet" href="style.css" /> -->
@@ -467,17 +467,41 @@
 
     const websocketConnection = () => {
       const currentFilter = window.location.href?.split("?")?.[1]?.split("=")?.[1] ? window.location.href.split("?")?.[1]?.split("=")?.[1] : "15m"; 
+      let eventType;
+      switch (currentFilter) {
+          case "15m":
+              eventType = "send_braker_notification";
+              break;
+          case "1h":
+              eventType = "send_braker_notification_1h";
+              break;
+          case "4h":
+              eventType = "send_braker_notification_4h";
+              break;
+          case "1d":
+              eventType = "send_braker_notification_1d";
+              break;
+          case "1w":
+              eventType = "send_braker_notification_1w";
+              break;
+          default:
+              eventType = "send_braker_notification"; // Default if none of the cases match
+      }
+      
+
       const socket = new WebSocket(`wss://${window.location.host}/arpit-lodu/`);
-        socket.onopen = function() {
-            console.log('WebSocket connection established.');
-        };
-        const tableBody  = document.getElementById("dataTableId");
-        socket.onmessage = function(event) {
-           if (JSON.parse(event.data)?.type === "send_braker_notification"){
+      socket.onopen = function() {
+          //console.log('WebSocket connection established.');
+      };
+      const tableBody  = document.getElementById("dataTableId");
+      socket.onmessage = function(event) {
+        console.log("eventType",eventType)
+          if (JSON.parse(event.data)?.type === eventType){
+            let data = JSON.parse(event.data)
             $("#dataTableId").empty();
             $("#brcradId").empty();
-            JSON.parse(event.data).instance?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,4)?.map((item, index) => {
-              console.log("=dfdfdf=====",item)
+            data.instance?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,4)?.map((item, index) => {
+              //console.log("=dfdfdf=====",item)
               $("#brcradId").append(`<div class="col-12 col-xl-3 col-md-6">
                 <div class="card">
                   <h5 class="card-title">Latest Notification</h5>
@@ -494,9 +518,9 @@
                   </div>
               </div>
               </div>`)
-             })
+            })
 
-            JSON.parse(event.data).instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
               console.log("=table=====",item)
               
               const row = document.createElement("tr");

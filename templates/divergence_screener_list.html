@@ -437,17 +437,37 @@
 
     const websocketConnection = () => {
       const currentFilter = window.location.href?.split("?")?.[1]?.split("=")?.[1] ? window.location.href.split("?")?.[1]?.split("=")?.[1] : "15m"; 
-      console.log("currentFilter", currentFilter)
+      let eventType;
+      switch (currentFilter) {
+          case "15m":
+              eventType = "send_divergence_notification";
+              break;
+          case "1h":
+              eventType = "send_divergence_notification_1h";
+              break;
+          case "4h":
+              eventType = "send_divergence_notification_4h";
+              break;
+          case "1d":
+              eventType = "send_divergence_notification_1d";
+              break;
+          case "1w":
+              eventType = "send_divergence_notification_1w";
+              break;
+          default:
+              eventType = "send_divergence_notification"; // Default if none of the cases match
+      }
       const socket = new WebSocket(`wss://${window.location.host}/arpit-lodu/`);
         socket.onopen = function() {
             console.log('WebSocket connection established.');
         };
         const tableBody  = document.getElementById("divergenceTableId");
         socket.onmessage = function(event) {
-          if (JSON.parse(event.data)?.type === "send_divergence_notification"){
+          if (JSON.parse(event.data)?.type === eventType){
+            let data =JSON.parse(event.data)
             $("#divergenceTableId").empty();
             $("#cardsId").empty();
-              JSON.parse(event.data).instance?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,4)?.map((item, index) => {
+              data.instance?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,4)?.map((item, index) => {
                 console.log("======",item)
                 $("#cardsId").append(`<div class="col-12 col-xl-3 col-md-6">
                   <div class="card">
@@ -466,13 +486,13 @@
                 </div>
                 </div>`)
                })
-            JSON.parse(event.data).instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
               const row = document.createElement("tr");
               row.innerHTML = `
               <td data-label='#'>${index+1}</td>
               <td data-label='Currency'>${item.exchange.exchange}</td>
               <td data-label='Current Price'>${item.price}</td>
-              <td data-label='Time (UTC)'>${dayjs(item.created_at).format("DD MMM YYYY, H:m a")}</td>
+              <td data-label='Time (UTC)'>${item.time}</td>
               <td data-label="RSI">${generateImage(item.rsi)}</td>
               <td data-label="MACD + Histogram">${generateImage(item.macd_histogram)}</td>
               <td data-label="OBV">${generateImage(item.obv)}</td>
