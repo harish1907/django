@@ -580,7 +580,7 @@ function getContent() {
               </div>`)
             })
 
-            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,200)?.map((item, index) => {
               console.log("=table=====",item)
               
               const row = document.createElement("tr");
