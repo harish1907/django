@@ -18,70 +18,70 @@ def send_data_to_socket():
             "braker_data",  
             {
                 "type": "send_braker_notification",
-                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='15m')[:50],many=True).data,
+                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='15m')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_braker_notification_1h",
-                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1h')[:50],many=True).data,
+                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1h')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_braker_notification_4h",
-                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='4h')[:50],many=True).data,
+                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='4h')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_braker_notification_1d",
-                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1d')[:50],many=True).data,
+                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1d')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_braker_notification_1w",
-                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1w')[:50],many=True).data,
+                "instance": BrakerScreenerSerializerData(BrakerScreener.objects.filter(interval='1w')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_divergence_notification",
-                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='15m')[:50],many=True).data,
+                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='15m')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_divergence_notification_1h",
-                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1h')[:50],many=True).data,
+                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1h')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_divergence_notification_4h",
-                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='4h')[:50],many=True).data,
+                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='4h')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_divergence_notification_1d",
-                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1d')[:50],many=True).data,
+                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1d')[:200],many=True).data,
             },
         )
         async_to_sync(channel_layer.group_send)(
             "braker_data",  
             {
                 "type": "send_divergence_notification_1w",
-                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1w')[:50],many=True).data,
+                "instance": DivergenceScreenerSerializerData(DivergenceScreener.objects.filter(interval='1w')[:200],many=True).data,
             },
         )
     except Exception as e:
