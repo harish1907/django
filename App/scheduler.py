@@ -93,17 +93,17 @@ def start_socket_job():
 def datadelete():
     try:
         data=[]
-        data+=list(BrakerScreener.objects.filter(interval='15m')[100:])
-        data+=list(BrakerScreener.objects.filter(interval='1h')[100:])
-        data+=list(BrakerScreener.objects.filter(interval='4h')[100:])
-        data+=list(BrakerScreener.objects.filter(interval='1d')[100:])
-        data+=list(BrakerScreener.objects.filter(interval='1w')[100:])
+        data+=list(BrakerScreener.objects.filter(interval='15m')[400:])
+        data+=list(BrakerScreener.objects.filter(interval='1h')[400:])
+        data+=list(BrakerScreener.objects.filter(interval='4h')[400:])
+        data+=list(BrakerScreener.objects.filter(interval='1d')[400:])
+        data+=list(BrakerScreener.objects.filter(interval='1w')[400:])
         
-        data+=list(DivergenceScreener.objects.filter(interval='15m')[100:])
-        data+=list(DivergenceScreener.objects.filter(interval='1h')[100:])
-        data+=list(DivergenceScreener.objects.filter(interval='4h')[100:])
-        data+=list(DivergenceScreener.objects.filter(interval='1d')[100:])
-        data+=list(DivergenceScreener.objects.filter(interval='1w')[100:])
+        data+=list(DivergenceScreener.objects.filter(interval='15m')[400:])
+        data+=list(DivergenceScreener.objects.filter(interval='1h')[400:])
+        data+=list(DivergenceScreener.objects.filter(interval='4h')[400:])
+        data+=list(DivergenceScreener.objects.filter(interval='1d')[400:])
+        data+=list(DivergenceScreener.objects.filter(interval='1w')[400:])
         for i in data:
             i.delete()
         print("deleted")
