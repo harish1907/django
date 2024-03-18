@@ -577,7 +577,7 @@
                 </div>
                 </div>`)
                })
-            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,200)?.map((item, index) => {
               const row = document.createElement("tr");
               row.innerHTML = `
               <td data-label='#'>${index+1}</td>
