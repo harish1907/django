@@ -266,6 +266,7 @@
     }
 
 
+    
     .clock {
       position: absolute;
       top: 50%;
@@ -276,7 +277,36 @@
       font-family: Orbitron;
       letter-spacing: 7px;
     }
+
+    a {
+      height: 40px !important;
+    }
     
+
+    @media screen and (max-width: 530px) {
+      .clock {
+        top: 46%;
+        left: 59%;
+        font-size: 18px;
+      }
+    }
+    
+    @media screen and (max-width: 450px) {
+      .clock {
+        top: 55%;
+        left: 82%;
+        font-size: 16px;
+      }
+    }
+
+    @media screen and (max-width: 450px) {
+      myclass {
+        width: 177px !important;
+        font-size: 13px !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+    }
 
   </style>
   <body style="display: flex; background-image: url('{% static 'bot_image/img/banner.jpg' %}'); flex-direction: column">
@@ -321,7 +351,7 @@
         </ul>
 
 
-        <a style="color:#f4a609;" href="#" data-toggle="popover" title=""
+      <a style="color:#f4a609; justify-content:start; !important" href="#" data-toggle="popover" title=""
         data-content="Some content inside the popover" id="popover-link-2">
        <span class="material-symbols-outlined">
          info
@@ -334,30 +364,21 @@
     <div class="main-container">
       <div class="first-container container-fluid">
         <div class="row">
-          <div class="col">
-            <div class="row g-6" id="cardsId">
-              <!-- For screens less than 478px -->
-              </div>
-              </div>
-            </div>
-            
-            <div class="container-div" style="width:100%;"> 
-              <!-- Filter form -->
-              <div class="duration d-flex justify-content-between align-items-center">
-                <div class="form-div d-flex">
-                    <input id="inputId" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+          <div class="col col-lg-3">
+            <form class="form-inline">
+              <input id="inputId" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button id="clearbtnID" type="button" class="btn btn-outline-warning my-2 my-sm-0" type="submit" style="width:75px;">Clear</button>
-              </div>
-              <div class="duration-buttons d-none d-md-block">
-                <a href="?interval=15m" class="btn btn-primary">15 min</a>
-                <a href="?interval=1h" class="btn btn-primary">1 hour</a>
-                <a href="?interval=4h" class="btn btn-primary">4 hours</a>
-                <a href="?interval=1d" class="btn btn-primary">1 day</a>
-                <a href="?interval=1w" class="btn btn-primary">1 week</a>
-              </div>
-            </div>
+            </form>
           </div>
-        </div>
+          <div class="col-sm">
+            <p style="color:#fff; font-size:15px; display: flex; justify-content: center;"></p>
+          </div>
+          <div class="col-sm" style="display: flex; justify-content: end; gap: 5px;">
+            <a href="?interval=15m" class="btn btn-primary active myclass">15 min</a>
+            <a href="?interval=1h" class="btn btn-primary myclass">1 hour</a>
+            <a href="?interval=4h" class="btn btn-primary myclass">4 hours</a>
+            <a href="?interval=1d" class="btn btn-primary myclass">1 day</a>
+            <a href="?interval=1w" class="btn btn-primary myclass">1 week</a>
       </div>
     </div>
   <div class="row divclass mt-3">
@@ -556,7 +577,7 @@
                 </div>
                 </div>`)
                })
-            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,200)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
               const row = document.createElement("tr");
               row.innerHTML = `
               <td data-label='#'>${index+1}</td>
