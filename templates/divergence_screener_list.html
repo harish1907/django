@@ -361,7 +361,6 @@
         </div>
       </div>
     </nav>
-      <div class="row g-6" id="cardsId"></div>
     <div class="main-container">
       <div class="first-container container-fluid">
         <div class="row">
@@ -374,7 +373,7 @@
           <div class="col-sm">
             <p style="color:#fff; font-size:15px; display: flex; justify-content: center;"></p>
           </div>
-          <div class="col-sm" style="display: flex; justify-content: end; gap: 5px;">
+          <div class="col-sm duration-buttons" style="display: flex; justify-content: end; gap: 5px;">
             <a href="?interval=15m" class="btn btn-primary active myclass">15 min</a>
             <a href="?interval=1h" class="btn btn-primary myclass">1 hour</a>
             <a href="?interval=4h" class="btn btn-primary myclass">4 hours</a>
@@ -578,7 +577,7 @@
                 </div>
                 </div>`)
                })
-            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,200)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#inputId").val()?.toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
               const row = document.createElement("tr");
               row.innerHTML = `
               <td data-label='#'>${index+1}</td>
