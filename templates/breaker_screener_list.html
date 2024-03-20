@@ -362,6 +362,7 @@
         </div>
       </div>
     </nav>
+   <div id="brcradId"></div>
     <div class="main-container">
       <div class="first-container container-fluid">
         <div class="row">
@@ -591,7 +592,7 @@ function getContent() {
               </div>`)
             })
 
-            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,50)?.map((item, index) => {
+            data.instance?.filter(search => search.exchange?.exchange?.toLowerCase()?.includes($("#breackerinputId").val().toLowerCase()))?.filter(filterItm => filterItm?.interval === currentFilter)?.slice(0,200)?.map((item, index) => {
               console.log("=table=====",item)
               
               const row = document.createElement("tr");
